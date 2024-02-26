@@ -23,10 +23,14 @@ def guess_word():
         #  ask the user to enter a letter.
             user_input = input("Guess a letter: ")
         # check if the input is valid    
-            if len(user_input) > 1:
-                print("Please enter only one letter.")
-            elif not user_input.isalpha():
+            if not user_input.isalpha():
                 print("Please enter a valid letter from a to z.\n")
+
+            elif len(user_input) == len(secret_word):
+            # Guessing the whole word
+                if user_input == secret_word:
+                    print("Congratulations! You've guessed the secret word!")
+                    break    
 
             else:     
                 # Convert guessed_letters to a list for manipulation

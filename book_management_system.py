@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Book:
     def __init__(self, title, author, year_of_publication):
         # Constructor for Book class
@@ -78,14 +80,19 @@ class BookManagementSystem:
         # Method to add a new book
         title = input("Please enter the title of the book: ") 
         author = input("Please enter the name of the author: ")  
-        year = input("Please enter the year of publication: ")  
-        if not year.isdigit():
-            # Check if year is not a digit
-            print("Invalid input. Please enter a number for the year of publication.")  
-            return 
-        year = int(year)  
-        self.manager.add_book(title, author, year)  
-        print("Book added.") 
+        while True:
+            year = input("Please enter the year of publication: ")
+            if not year.isdigit():
+                print("Invalid input. Please enter a number for the year of publication.")
+                continue
+            year = int(year)
+            current_year = datetime.now().year
+            if year > current_year:
+                print("Invalid year. Publication year cannot be in the future.")
+            else:
+                break
+        self.manager.add_book(title, author, year)
+        print("Book added.")
 
     def show_books(self):
         # Method to display all books
